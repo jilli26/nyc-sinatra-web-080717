@@ -1,13 +1,15 @@
 class FiguresController < ApplicationController
 
   get '/figures/new' do
-    #Route to form to create new landmark_id
+    #Route to form to create new figure_id
+    @landmarks = Landmark.all
+    @titles = Title.all
     erb :'figures/new'
   end
 
   post '/figures' do
-    #route to create new landmark
-    Figure.create(params[:landmark])
+    #route to create new figure
+    Figure.create(params[:name]) #could be :figure
     erb :'figures/index'
   end
 
@@ -18,22 +20,21 @@ class FiguresController < ApplicationController
   end
 
   get '/figures/:id/edit' do
-    @landmark = Figure.find_by(id: params[:id])
-    #route to get form to edit landmark
+    @figure = Figure.find_by(id: params[:id])
+    #route to get form to edit figure
     erb :'figures/edit'
   end
 
   patch '/figures/:id' do
-    @landmark = Figure.find_by(id: params[:id])
-    @landmark.update(params[:landmark])
-    #route to edit landmark
-    redirect "figures/#{@landmark.id}"
+    @figure = Figure.find_by(id: params[:id])
+    @figure.update(params[:figure])
+    #route to edit figure
+    redirect "figures/#{@figure.id}"
   end
 
   get '/figures/:id' do
-    @landmark = Figure.find_by(id: params[:id])
-    # binding.pry
-    #route to show individual landmark
+    @figure = Figure.find_by(id: params[:id])
+    @figure = Figure.find_by(id: params[:id])
     erb :'figures/show'
   end
 
