@@ -8,9 +8,21 @@ class FiguresController < ApplicationController
   end
 
   post '/figures' do
+
     #route to create new figure
-    Figure.create(params[:name]) #could be :figure
-    @figures = Figure.all
+    @figure = Figure.create(params[:figure]) #could be :figure
+    # @figures =Figure.all
+
+    if !params[:landmark][:name].empty?
+      landmark = Landmark.create(params[:landmark])
+      @figure.landmarks << landmark
+    end
+
+    if !params[:title][:name].empty?
+      title = Title.create(params[:title])
+      @figure.titles << title
+    end
+
     erb :'figures/index'
   end
 
@@ -33,10 +45,12 @@ class FiguresController < ApplicationController
     @figure.update(params[:figure])
 
     if !params[:landmark][:name].empty?
-      Landmark.create(params[:landmark])
+      landmark = Landmark.create(params[:landmark])
+      @figure.landmarks << landmark
     end
     if !params[:title][:name].empty?
-      Title.create(params[:title])
+      title = Title.create(params[:title])
+      @figure.titles << title
     end
 
     redirect "figures/#{@figure.id}"

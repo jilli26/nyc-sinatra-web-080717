@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>All Landmarks</title>
+    <title>All Figures</title>
   </head>
 
   <body>
-    <h1>All Landmarks</h1>
+    <h1>All Figures</h1>
       <% @figures.each do |figure| %>
         <a href="/figures/<%= figure.id %>"><%=figure.name%></a>
       <% end %>

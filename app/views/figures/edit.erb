@@ -6,15 +6,20 @@
   <p>Choose from existing</p>
 
   <p>Titles:</p>
+  <p>
   <%@titles.each do |title|%>
-  <input type="checkbox" name="figure[title_ids]" value= "<%=title.name%>"<%='checked' if @figure.titles.include?(title) %>>
+  <%=title.name%>
+  <input type="checkbox" name="figure[title_ids][]" value= "<%=title.id%>"<%='checked' if @figure.titles.include?(title) %>>
   <%end%>
-
+  </p>
 
   <p>Landmarks:</p>
+  <p>
   <%@landmarks.each do |landmark|%>
-    <input type="checkbox" name="figure[landmark_ids]" value= "<%=landmark.name%>"<%='checked' if @figure.landmarks.include?(landmark) %>>
+    <%=landmark.name%>
+    <input type="checkbox" name="figure[landmark_ids][]" value= "<%=landmark.id%>"<%='checked' if @figure.landmarks.include?(landmark) %>>
   <%end%>
+  </p>
 
   <p>OR pick new title or Landmark</p>
 
