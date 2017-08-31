@@ -10,6 +10,7 @@ class FiguresController < ApplicationController
   post '/figures' do
     #route to create new figure
     Figure.create(params[:name]) #could be :figure
+    @figures = Figure.all
     erb :'figures/index'
   end
 
@@ -33,7 +34,6 @@ class FiguresController < ApplicationController
   end
 
   get '/figures/:id' do
-    @figure = Figure.find_by(id: params[:id])
     @figure = Figure.find_by(id: params[:id])
     erb :'figures/show'
   end

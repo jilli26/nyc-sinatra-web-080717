@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Landmarks</title>
+  </head>
+
+  <body>
+    <h1>All Landmarks</h1>
+      <% @figures.each do |figure| %>
+        <a href="/figures/<%= figure.id %>"><%=figure.name%></a>
+      <% end %>
+  </body>
+</html>
