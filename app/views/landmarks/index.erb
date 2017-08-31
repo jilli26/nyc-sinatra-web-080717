@@ -2,13 +2,12 @@
 <html>
   <head>
     <title>All Landmarks</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
   </head>
 
   <body>
     <h1>All Landmarks</h1>
-      <% @landmarks.all.each do |landmark| %>
-        <a href="/landmarks/ <%= landmark.id %>"><%= @landmark.name %>
+      <% @landmarks.each do |landmark| %>
+        <a href="/landmarks/<%= landmark.id %>"><%=landmark.name%>, <%=landmark.year_completed%>,</a>
       <% end %>
   </body>
 </html>

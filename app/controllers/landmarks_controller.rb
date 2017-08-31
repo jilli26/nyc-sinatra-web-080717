@@ -7,27 +7,34 @@ class LandmarksController < ApplicationController
 
   post '/landmarks' do
     #route to create new landmark
+    Landmark.create(params[:landmark])
     erb :'landmarks/index'
   end
 
   get '/landmarks' do
+    @landmarks = Landmark.all
     #route to show all landmarks
     erb :'landmarks/index'
   end
 
   get '/landmarks/:id/edit' do
+    @landmark = Landmark.find_by(id: params[:id])
     #route to get form to edit landmark
-    erb :'landmarks/edit.erb'
+    erb :'landmarks/edit'
   end
 
-  post '/landmarks/:id/' do
+  patch '/landmarks/:id' do
+    @landmark = Landmark.find_by(id: params[:id])
+    @landmark.update(params[:landmark])
     #route to edit landmark
     redirect "landmarks/#{@landmark.id}"
   end
 
   get '/landmarks/:id' do
+    @landmark = Landmark.find_by(id: params[:id])
+    # binding.pry
     #route to show individual landmark
-    erb :'landmarks/show.erb'
+    erb :'landmarks/show'
   end
 
 
