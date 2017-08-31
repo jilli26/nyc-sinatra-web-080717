@@ -20,16 +20,25 @@ class FiguresController < ApplicationController
     erb :'figures/index'
   end
 
-  get '/figures/:id/edit' do
+  get "/figures/:id/edit" do
     @figure = Figure.find_by(id: params[:id])
-    #route to get form to edit figure
-    erb :'figures/edit'
+    @landmarks = Landmark.all
+    @titles = Title.all
+
+    erb :'/figures/edit'
   end
 
   patch '/figures/:id' do
     @figure = Figure.find_by(id: params[:id])
     @figure.update(params[:figure])
-    #route to edit figure
+
+    if !params[:landmark][:name].empty?
+      Landmark.create(params[:landmark])
+    end
+    if !params[:title][:name].empty?
+      Title.create(params[:title])
+    end
+
     redirect "figures/#{@figure.id}"
   end
 
