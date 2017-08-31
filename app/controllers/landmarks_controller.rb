@@ -8,6 +8,7 @@ class LandmarksController < ApplicationController
   post '/landmarks' do
     #route to create new landmark
     Landmark.create(params[:landmark])
+    @landmarks = Landmark.all
     erb :'landmarks/index'
   end
 
